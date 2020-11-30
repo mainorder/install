@@ -72,7 +72,7 @@ echo "Installing dependencies"
 if [[ "$OSTYPE" == "linux-gnu"* ]]
 then
 	sudo apt-get update -y
-	sudo apt-get install -y mpg123 git
+	sudo apt-get install -y mpg123 git libopenjp2-7-dev
 fi
 
 
@@ -107,6 +107,11 @@ fi
 
 echo "Installing App Dependencies"
 pip3 install -r requirements.txt
+pip3 intall schedule
+pip3 install paramiko
+# reinstall these to enforce up to date version
+sudo pip3 uninstall python-escpos
+pip3 install python-escpos
 
 
 if [[ "$MAINORDER_INTERACTIVE" == "1" && "yes" == $(confirm "Do you want to edit the configuration file using \$EDITOR ($EDITOR)?") ]]
@@ -132,7 +137,7 @@ then
 	if [[ "yes" == $(confirm "Do you want to install pm2?") ]]
 	then
 		echo "Installing pm2"
-		npm install -g pm2
+		sudo npm install -g pm2
 	fi
 fi
 
@@ -148,12 +153,16 @@ fi
 # python3 main.py test
 proceed
 
+# Bus 001 Device 004: ID 04b8:0e15 Seiko Epson Corp. 
+echo 'ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="04b8", ATTR{idProduct}=="0e15", MODE="0666"' > /etc/udev/rules.d/99-epson.rules
+
 # Setup autostart
+
 # DataPlicity
 if [[ "yes" == $(confirm "Do you want to setup autostart?") ]]
 then
 	pm2 startup
-	pm2 start "python3 main.py"
+	pm2 start "bash start.sh"
 	pm2 save
 fi
 

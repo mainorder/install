@@ -3,7 +3,7 @@
 set -euxo pipefail
 
 # System dependencies
-REQUIRED_PYTHON_VERSION="3.6.1"
+REQUIRED_PYTHON_VERSION="3.4.0"
 THREADS=1
 
 # MainOrder variables
@@ -29,7 +29,7 @@ function proceed() {
 }
 
 function install_python_36(){
-	echo "Installing python ${REQUIRED_PYTHON_VERSION}..."
+	echo "Installing python 3.6.0..."
 	sudo apt-get install build-essential libc6-dev
 	sudo apt-get install libncurses5-dev libncursesw5-dev libreadline6-dev
 	sudo apt-get install libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev
@@ -37,9 +37,9 @@ function install_python_36(){
 
 
 	cd $HOME
-	wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${REQUIRED_PYTHON_VERSION}.tgz
-	tar -zxvf Python-${REQUIRED_PYTHON_VERSION}.tgz
-	cd Python-${REQUIRED_PYTHON_VERSION}
+	wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-3.6.0.tgz
+	tar -zxvf Python-3.6.0.tgz
+	cd Python-3.6.0
 	./configure
 	make -j${THREADS}
 	sudo make install

@@ -53,9 +53,9 @@ function install_node(){
 # Checking python3 installation
 PYTHON_VERSION=$(python3 -V 2>&1 | sed 's/.* \([0-9]\).\([0-9]\).*/\1\2/')
 
-if [[ "$PYTHON_VERSION" -lt "36" ]]
+if [[ "$PYTHON_VERSION" -lt "34" ]]
 then
-	echo "Python >=3.6 not installed. "
+	echo "Python >=3.4 not installed. "
 	if [[ "$OSTYPE" == "linux-gnu"* && "yes" == $(confirm "Do you want to install python3.6?") ]]
 	then
 		echo "Installing python 3.6. This may take a while..."
@@ -64,7 +64,7 @@ then
 	exit
 fi
 
-echo "Python >= 3.6 installed. Setting up git project."
+echo "Python >= 3.4 installed. Setting up git project."
 
 # Dependencies
 echo "Installing dependencies"

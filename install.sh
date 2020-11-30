@@ -71,8 +71,8 @@ echo "Installing dependencies"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]
 then
-	apt-get update -y
-	apt-get install -y mpg123 git
+	sudo apt-get update -y
+	sudo apt-get install -y mpg123 git
 fi
 
 

@@ -106,12 +106,12 @@ else
 fi
 
 echo "Installing App Dependencies"
-pip3 install -r requirements.txt
-pip3 intall schedule
-pip3 install paramiko
+pip3 install --user -r requirements.txt
+pip3 intall --user schedule
+pip3 install --user paramiko
 # reinstall these to enforce up to date version
 sudo pip3 uninstall python-escpos
-pip3 install python-escpos
+pip3 install --user python-escpos
 
 
 if [[ "$MAINORDER_INTERACTIVE" == "1" && "yes" == $(confirm "Do you want to edit the configuration file using \$EDITOR ($EDITOR)?") ]]

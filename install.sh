@@ -107,7 +107,7 @@ fi
 
 echo "Installing App Dependencies"
 pip3 install --user -r requirements.txt
-pip3 intall --user schedule
+pip3 install --user schedule
 pip3 install --user paramiko
 # reinstall these to enforce up to date version
 sudo pip3 uninstall python-escpos
